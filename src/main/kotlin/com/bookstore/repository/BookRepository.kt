@@ -4,9 +4,7 @@ import com.bookstore.repository.mapping.Book
 import com.bookstore.repository.mapping.BookDto
 import com.bookstore.repository.mapping.BookDto.Companion.toDto
 import com.bookstore.repository.mapping.Genre
-import org.jetbrains.exposed.sql.andWhere
-import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.*
 import org.springframework.stereotype.Repository
 
 
@@ -29,13 +27,28 @@ class BookRepository {
         return query.map { toDto(it) }
     }
 
-    fun add(book: BookDto): Int =
-        Book.insert {
+    fun add(book: BookDto): Int {
+        val copies = find(mapOf("isbn" to book.isbn)).map { it.copy }
+        val nextCopy = copies.maxByOrNull { it }?.let { max ->
+            (1..(max + 1)).minus(copies.toSet()).minOfOrNull { it }
+        } ?: 1
+        return Book.insertAndGetId {
             it[isbn] = book.isbn
             it[title] = book.title
             it[author] = book.author
             it[genre] = book.genre
             it[widthInCentimeters] = book.width
-        }[Book.id].value
+            it[copy] = nextCopy
+        }.value
+    }
 
+    fun remove(id: Int) {
+        Book.deleteWhere {
+            Book.id.eq(id)
+        }
+    }
+
+    fun update(id: Int, book: BookDto) {
+//        find(mapOf("id" to book.id))
+    }
 }

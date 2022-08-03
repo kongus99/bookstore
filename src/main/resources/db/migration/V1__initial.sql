@@ -15,7 +15,7 @@ CREATE TABLE public.book
     width_in_centimeters SMALLINT     NOT NULL,
     shelf_id             INTEGER
         CONSTRAINT fk_book_shelf_id__id REFERENCES shelf ON UPDATE RESTRICT ON DELETE RESTRICT,
-    copy                 serial,
+    copy                 INT          NOT NULL,
 
     constraint isbn_copy unique (isbn, copy)
 );

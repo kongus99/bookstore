@@ -19,4 +19,13 @@ class BookController(val repository: BookRepository) {
     fun post(@RequestBody book: BookDto): Int {
         return repository.add(book)
     }
+
+    @PutMapping("/bookstore/book/{id}")
+    fun put(@PathVariable id: Int, @RequestBody book: BookDto) {
+        return repository.update(id, book)
+    }
+    @DeleteMapping("/bookstore/book/{id}")
+    fun delete(@PathVariable id: Int) {
+        repository.remove(id)
+    }
 }
