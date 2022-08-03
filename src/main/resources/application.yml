@@ -1,0 +1,13 @@
+server:
+  port: 9997
+
+spring:
+  application:
+    name: bookstore
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bookstore
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+flyway:
+  enabled: true
