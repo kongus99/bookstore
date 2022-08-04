@@ -1,0 +1,42 @@
+###
+GET http://localhost:9997/bookstore/book
+
+###
+POST http://localhost:9997/bookstore/book
+Content-Type: application/json
+
+{
+  "isbn": "978-1-56619-909-4",
+  "title": "Hobbit",
+  "author": "J.R.R Tolken",
+  "genre": "FANTASY",
+  "width": 15
+}
+
+###
+POST http://localhost:9997/bookstore/book
+Content-Type: application/json
+
+{
+  "isbn": "978-1-56619-909-5",
+  "title": "The Silmarillion",
+  "author": "J.R.R Tolken",
+  "genre": "FANTASY",
+  "width": 20
+}
+
+
+###
+DELETE http://localhost:9997/bookstore/book/1
+
+###
+PUT http://localhost:9997/bookstore/book/6
+Content-Type: application/json
+
+{
+  "isbn": "978-1-56619-909-4",
+  "title": "Hobbit 2",
+  "author": "J.R.R Tolken",
+  "genre": "FANTASY",
+  "width": 15
+}

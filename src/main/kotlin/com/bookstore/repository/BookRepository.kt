@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class BookRepository {
-    fun find(params: Map<String, String>): List<BookDto> {
+    fun retrieve(params: Map<String, String>): List<BookDto> {
         val query = Book.selectAll()
 
         params["id"]?.let { query.andWhere { Book.id eq it.toInt() } }
@@ -27,8 +27,8 @@ class BookRepository {
         return query.map { toDto(it) }
     }
 
-    fun add(book: BookDto): Int {
-        val copies = find(mapOf("isbn" to book.isbn)).map { it.copy }
+    fun create(book: BookDto): Int {
+        val copies = retrieve(mapOf("isbn" to book.isbn)).map { it.copy }
         val nextCopy = copies.maxByOrNull { it }?.let { max ->
             (1..(max + 1)).minus(copies.toSet()).minOfOrNull { it }
         } ?: 1
@@ -42,13 +42,19 @@ class BookRepository {
         }.value
     }
 
-    fun remove(id: Int) {
+    fun delete(id: Int) {
         Book.deleteWhere {
             Book.id.eq(id)
         }
     }
 
     fun update(id: Int, book: BookDto) {
-//        find(mapOf("id" to book.id))
+        Book.update({ Book.id eq id }) {
+            it[isbn] = book.isbn
+            it[title] = book.title
+            it[author] = book.author
+            it[genre] = book.genre
+            it[widthInCentimeters] = book.width
+        }
     }
 }
