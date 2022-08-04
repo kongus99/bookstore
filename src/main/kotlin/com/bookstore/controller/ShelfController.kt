@@ -1,32 +1,49 @@
 package com.bookstore.controller
 
+import com.bookstore.repository.BookRepository
 import com.bookstore.repository.ShelfRepository
+import com.bookstore.repository.mapping.BookDto
 import com.bookstore.repository.mapping.ShelfDto
+import com.bookstore.service.BookService
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @Transactional
-class ShelfController(val repository: ShelfRepository) {
+class ShelfController(
+    val shelfRepository: ShelfRepository,
+    val bookRepository: BookRepository,
+    val bookService: BookService
+) {
 
     @GetMapping("/bookstore/shelf")
     fun get(@RequestParam id: Int?): List<ShelfDto> {
-        return repository.retrieve(id)
+        return shelfRepository.retrieve(id)
     }
 
     @PostMapping("/bookstore/shelf")
     fun post(@RequestBody shelf: ShelfDto): Int {
-        return repository.create(shelf)
-    }
-
-    @PutMapping("/bookstore/shelf/{id}")
-    fun put(@PathVariable id: Int, @RequestBody shelf: ShelfDto) {
-        return repository.update(id, shelf)
+        return shelfRepository.create(shelf)
     }
 
     @DeleteMapping("/bookstore/shelf/{id}")
     fun delete(@PathVariable id: Int) {
-        repository.delete(id)
+        shelfRepository.delete(id)
+    }
+
+    @GetMapping("/bookstore/shelf/{shelfId}/book")
+    fun getBooksOnShelf(@PathVariable shelfId: Int): List<BookDto> {
+        return bookRepository.retrieve(mapOf("shelfId" to shelfId.toString()))
+    }
+
+    @PutMapping("/bookstore/shelf/{shelfId}/book/{bookId}")
+    fun addBookToShelf(@PathVariable shelfId: Int, @PathVariable bookId: Int) {
+        return bookService.addToShelf(bookId, shelfId)
+    }
+
+    @DeleteMapping("/bookstore/shelf/{shelfId}/book/{bookId}")
+    fun removeBookFromShelf(@PathVariable shelfId: Int, @PathVariable bookId: Int) {
+        return bookService.removeFromShelf(bookId)
     }
 
 }

@@ -35,6 +35,7 @@ class BookRepository {
             it[genre] = book.genre
             it[widthInCentimeters] = book.width
             it[copy] = book.copy
+            it[assignedShelf] = book.shelfId
         }.value
     }
 
@@ -51,6 +52,7 @@ class BookRepository {
             it[author] = book.author
             it[genre] = book.genre
             it[widthInCentimeters] = book.width
+            it[assignedShelf] = book.shelfId
         }
     }
 }

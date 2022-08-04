@@ -26,10 +26,4 @@ class ShelfRepository {
         }
     }
 
-    fun update(id: Int, shelf: ShelfDto) {
-        Shelf.update({ Shelf.id eq id }) {
-            it[widthInMeters] = shelf.width
-        }
-    }
-
 }
