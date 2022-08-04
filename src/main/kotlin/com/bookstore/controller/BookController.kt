@@ -2,13 +2,14 @@ package com.bookstore.controller
 
 import com.bookstore.repository.BookRepository
 import com.bookstore.repository.mapping.BookDto
+import com.bookstore.service.BookService
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 
 
 @RestController
 @Transactional
-class BookController(val repository: BookRepository) {
+class BookController(val service: BookService, val repository: BookRepository) {
 
     @GetMapping("/bookstore/book")
     fun get(@RequestParam allParams: Map<String, String>): List<BookDto> {
@@ -17,7 +18,7 @@ class BookController(val repository: BookRepository) {
 
     @PostMapping("/bookstore/book")
     fun post(@RequestBody book: BookDto): Int {
-        return repository.create(book)
+        return service.create(book)
     }
 
     @PutMapping("/bookstore/book/{id}")

@@ -10,7 +10,7 @@ object Book : IntIdTable() {
     val genre = enumeration("genre", Genre::class)
     val widthInCentimeters = byte("width_in_centimeters")
     val assignedShelf = (integer("shelf_id").references(Shelf.id)).nullable()
-    val copy = integer("copy").autoIncrement()
+    val copy = integer("copy")
 
     val isbnCopy = uniqueIndex("isbn_copy", isbn, copy)
 }

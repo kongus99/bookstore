@@ -28,17 +28,13 @@ class BookRepository {
     }
 
     fun create(book: BookDto): Int {
-        val copies = retrieve(mapOf("isbn" to book.isbn)).map { it.copy }
-        val nextCopy = copies.maxByOrNull { it }?.let { max ->
-            (1..(max + 1)).minus(copies.toSet()).minOfOrNull { it }
-        } ?: 1
         return Book.insertAndGetId {
             it[isbn] = book.isbn
             it[title] = book.title
             it[author] = book.author
             it[genre] = book.genre
             it[widthInCentimeters] = book.width
-            it[copy] = nextCopy
+            it[copy] = book.copy
         }.value
     }
 
