@@ -1,0 +1,21 @@
+###
+GET http://localhost:9997/bookstore/shelf
+
+###
+POST http://localhost:9997/bookstore/shelf
+Content-Type: application/json
+
+{
+  "width": 1.5
+}
+
+###
+DELETE http://localhost:9997/bookstore/shelf/1
+
+###
+PUT http://localhost:9997/bookstore/shelf/2
+Content-Type: application/json
+
+{
+  "width": 2.5
+}

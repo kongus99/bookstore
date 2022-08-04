@@ -7,7 +7,7 @@ object Shelf : IntIdTable() {
     val widthInMeters = float("width_in_meters")
 }
 
-data class ShelfDto(val id: Int?, val widthInMeters: Float) {
+data class ShelfDto(val id: Int?, val width: Float) {
     companion object {
         fun toDto(it: ResultRow): ShelfDto =
             ShelfDto(
