@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@Transactional
+@Transactional("myTransactional")
 class BookController(val service: BookService, val repository: BookRepository) {
 
     @GetMapping("/bookstore/book")

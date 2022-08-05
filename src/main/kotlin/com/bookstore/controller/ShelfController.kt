@@ -9,10 +9,9 @@ import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@Transactional
+@Transactional("myTransactional")
 class ShelfController(
     val shelfRepository: ShelfRepository,
-    val bookRepository: BookRepository,
     val bookService: BookService
 ) {
 
@@ -33,7 +32,6 @@ class ShelfController(
 
     @GetMapping("/bookstore/shelf/{shelfId}/book")
     fun getBooksOnShelf(@PathVariable shelfId: Int): List<BookDto> {
-//        val retrieve = bookRepository.retrieve(mapOf("shelfId" to shelfId.toString()))
         return shelfRepository.retrieveBooks(shelfId)
     }
 
