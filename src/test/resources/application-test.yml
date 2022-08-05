@@ -1,0 +1,13 @@
+spring:
+  spring:
+    flyway:
+      schemas: public
+
+zonky:
+  test:
+    database:
+      prefetching:
+        thread-name-prefix: prefetching-
+        concurrency: 3
+        pipeline-cache-size: 5
+        max-prepared-templates: 10

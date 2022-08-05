@@ -16,14 +16,14 @@ object Book : IntIdTable() {
 }
 
 data class BookDto(
-    val id: Int?,
+    val id: Int? = null,
     val isbn: String,
     val title: String,
     val author: String,
     val genre: Genre,
     val width: Byte,
-    val shelfId: Int?,
-    val copy: Int
+    val shelfId: Int?= null,
+    val copy: Int = 0
 ) {
     companion object {
         fun toDto(it: ResultRow): BookDto =
