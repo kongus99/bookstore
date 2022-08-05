@@ -1,6 +1,7 @@
 package com.bookstore.repository
 
 import com.bookstore.repository.mapping.Book
+import com.bookstore.repository.mapping.BookDto
 import com.bookstore.repository.mapping.Shelf
 import com.bookstore.repository.mapping.ShelfDto
 import org.jetbrains.exposed.sql.*
@@ -24,6 +25,10 @@ class ShelfRepository {
         Shelf.deleteWhere {
             Shelf.id.eq(id)
         }
+    }
+
+    fun retrieveBooks(shelfId: Int): List<BookDto> {
+        return Book.innerJoin(Shelf).select { Shelf.id eq shelfId }.map(BookDto::toDto)
     }
 
 }

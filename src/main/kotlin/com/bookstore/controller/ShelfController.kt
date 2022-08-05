@@ -33,7 +33,8 @@ class ShelfController(
 
     @GetMapping("/bookstore/shelf/{shelfId}/book")
     fun getBooksOnShelf(@PathVariable shelfId: Int): List<BookDto> {
-        return bookRepository.retrieve(mapOf("shelfId" to shelfId.toString()))
+//        val retrieve = bookRepository.retrieve(mapOf("shelfId" to shelfId.toString()))
+        return shelfRepository.retrieveBooks(shelfId)
     }
 
     @PutMapping("/bookstore/shelf/{shelfId}/book/{bookId}")
