@@ -1,5 +1,5 @@
 ###
-GET http://localhost:9997/bookstore/book
+GET http://localhost:9997/bookstore/book?title=Hobbit
 
 ###
 POST http://localhost:9997/bookstore/book
@@ -30,7 +30,7 @@ Content-Type: application/json
 DELETE http://localhost:9997/bookstore/book/1
 
 ###
-PUT http://localhost:9997/bookstore/book/6
+PUT http://localhost:9997/bookstore/book/1
 Content-Type: application/json
 
 {

@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest
 
 @AutoConfigureEmbeddedDatabase(refresh = AFTER_EACH_TEST_METHOD)
 @SpringBootTest
-internal class BookRepositoryTest(@Autowired val shelfRepository: ShelfRepository) {
+internal class ShelfRepositoryTest(@Autowired val shelfRepository: ShelfRepository) {
 
     @Test
     fun shouldNotBeAnyShelvesInDefaultBookstore() {

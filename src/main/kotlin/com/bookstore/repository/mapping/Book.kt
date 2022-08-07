@@ -12,7 +12,7 @@ object Book : IntIdTable() {
     val assignedShelf = (integer("shelf_id").references(Shelf.id)).nullable()
     val copy = integer("copy")
 
-    val isbnCopy = uniqueIndex("isbn_copy", isbn, copy)
+    private val isbnCopy = uniqueIndex("isbn_copy", isbn, copy)
 }
 
 data class BookDto(
