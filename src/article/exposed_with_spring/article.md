@@ -570,3 +570,4 @@ good library to try out.
 - [How to implement your own JSON column](https://github.com/JetBrains/Exposed/issues/127)
 - [Exposed DSL Wiki](https://github.com/JetBrains/Exposed/wiki/DSL)
 - [Zonky's embedded databases testing framework](https://github.com/zonkyio/embedded-database-spring-test)
+- [This project's sources](https://github.com/kongus99/bookstore)
