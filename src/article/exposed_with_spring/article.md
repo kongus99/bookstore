@@ -10,7 +10,7 @@ for various database dialects:
 - H2
 - MySQL and MariaDB
 - Oracle
-- PostgreSQL
+- PostgresSQL
 - SQL Server
 - SQLite
 
@@ -238,7 +238,7 @@ enum class Genre {
 
 The book table contains a few more complex mappings. The **enumeration** column type allows us to map out the **Genre**
 enum onto integer column in the database. *Exposed* provides most of the common ORM mapping columns, but some less
-standardized ones might require manual implementation. JSON is one such column type - since it not available in every
+standardized ones might require manual implementation. JSON is one such column type - since it is not available in every
 RDBMS. Please refer to [this issue](https://github.com/JetBrains/Exposed/issues/127) for more information.
 
 Next we have the constraint definitions. The foreign key is self-explanatory and the **isbnCopy** is made private since
@@ -307,7 +307,7 @@ fun retrieve(params: Map<String, String>): List<BookDto> {
 }
 ```
 
-The way queries work in *Exposed* is the same like how **Stream** works in Java. If you are familiar with JOOQ, it is
+The way queries work in *Exposed* is the same as how **Stream** works in Java. If you are familiar with JOOQ, it is
 basically analogous to how it works there. We start with **selectAll** on the target table, and then we go through
 various stages of SQL query, in this case just WHERE clause, passing through building objects and end it with a terminal
 operation - in this case **map**. The conditions use the previously defined tables and their columns, analogous to
@@ -480,7 +480,7 @@ zonky:
 ```
 
 The first section is used by the tests to determine the default schema for the Flyway migrations that are run before
-tests. The second section determines the concurrency factor of available test databases, and as said before, can bu used
+tests. The second section determines the concurrency factor of available test databases, and as said before, can be used
 to tweak the performance of the tests. The tests themselves are fairly simple:
 
 ```kotlin
@@ -533,7 +533,7 @@ fun shouldAllowToAddMultipleShelves() {
 ```
 
 The main difference here is that, since it is a mock application, we need to open the transaction by hand, since it is
-not provided automatically. Other than that, the test is vary typical for repository test. Again, zonky's library takes
+not provided automatically. Other than that, the test is very typical for repository test. Again, zonky's library takes
 care of database cleanup.
 
 # Conclusions
@@ -562,3 +562,11 @@ predictable manner, and unlike *JOOQ* it does not need complex setup to map enti
 syntax). It's direct competitor - *Ktorm* - seemed a bit lacking in terms of functionalities, especially when it comes
 to many-to-many relations. I found the implementation experience pretty easy and satisfying, and can endorse it as a
 good library to try out.
+
+# References
+
+- [Spring IO starter](https://start.spring.io)
+- [Exposed Maven repository](https://mvnrepository.com/artifact/org.jetbrains.exposed)
+- [How to implement your own JSON column](https://github.com/JetBrains/Exposed/issues/127)
+- [Exposed DSL Wiki](https://github.com/JetBrains/Exposed/wiki/DSL)
+- [Zonky's embedded databases testing framework](https://github.com/zonkyio/embedded-database-spring-test)
