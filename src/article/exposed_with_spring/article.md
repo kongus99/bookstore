@@ -28,7 +28,7 @@ Let's create a simple bookstore REST app service. These are some sample basic re
 - the genre is one of Action, Romance, SF, Fantasy, Criminal, Other
 - the width specifies the width of the book in centimeters
 - the bookstore can add any number of persistable shelves
-- each shelf have a specified width
+- each shelf has a specified width
 - any book that was created can be assigned/unassigned to an existing shelf
 - the width of the books cannot exceed the assigned shelf width
 - multiple copies of the same book can be added to the store
@@ -185,7 +185,7 @@ types. The columns in *Exposed* are not null and not unique by default.
 
 Second, you need to define the actual DTO. **Shelf** only represents the table and should not be passed around without
 mapping it to something serialization friendly. Since we are using Kotlin, it is easy - a data class suffices. Still, we
-should add some means to map it out from the **ResultRow** to **ShelfDto**. Easiest way is to provide companion object
+should add some means to map it out from the **ResultRow** to **ShelfDto**. The easiest way is to provide companion object
 with transformation function.
 
 Next, let's take a look at a more elaborate **Book** class.
@@ -328,7 +328,7 @@ WHERE book.title LIKE 'Hobbit'
 ```
 
 Now, in normal app we would probably provide some service to translate the conditions into something more elaborate than
-**Map<String,String**, allowing us to create more complex queries with type/parameter name validation, but it is outside
+**Map<String,String>**, allowing us to create more complex queries with type/parameter name validation, but it is outside
 the scope of this article.
 
 ### UPDATE
